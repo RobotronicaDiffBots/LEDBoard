@@ -18,7 +18,15 @@ uint8_t prevbuttons = 0;
 
 //AN: bmod = brightness modifier, 0 to 100
 
-
+//remote buttons
+#define L6 1<<0
+#define L5 1<<1
+#define L4 1<<2
+#define LT 1<<3
+#define R3 1<<4
+#define R2 1<<5
+#define R1 1<<6
+#define RT 1<<7
 
 /////////////////////////////////////////////////////////////////////
 //Variables. Please igmore the terrible globalness
@@ -171,16 +179,16 @@ void process() {
     uint8_t buttons = radioMessage.d4;
     //light button has been pressed
     //L6
-    if ((buttons & 0x01) && !(prevbuttons & 0x01)) {
-      setFade(colours[robots[radioMessage.robotID]], 40, (buttons & 0x80 ? .5 : 1));
+    if ((buttons & L6) && !(prevbuttons & L6)) {
+      setFade(colours[robots[radioMessage.robotID]], 40, (buttons & LT ? .5 : 1));
     }
     //L5
-    if ((buttons & 0x02) && !(prevbuttons & 0x02)) {
-      setOsc(colours[robots[radioMessage.robotID]], 80, (buttons & 0x80 ? .5 : 1));
+    if ((buttons & L5) && !(prevbuttons & L5)) {
+      setOsc(colours[robots[radioMessage.robotID]], 80, (buttons & LT ? .5 : 1));
     }
     //L4
-    if ((buttons & 0x04) && !(prevbuttons & 0x04)) {
-      setFade(colours[0], 40, (buttons & 0x80 ? .5 : 1));
+    if ((buttons & L4) && !(prevbuttons & L4)) {
+      setFade(colours[0], 40, (buttons & LT ? .5 : 1));
     }
     prevbuttons = buttons;
   }
