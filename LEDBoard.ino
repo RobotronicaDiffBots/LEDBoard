@@ -175,7 +175,7 @@ void setOsc(rgb24_t colour, uint8_t p, float bm) {
 //Process a valid radio message
 void process() {
   //Check the button states vs previous
-  if (radioMessage.type < 120 || radioMessage.type > 122) {
+  if (radioMessage.type <= 5) {
     uint8_t buttons = radioMessage.d4;
     //light button has been pressed
     //L6
