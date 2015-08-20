@@ -179,7 +179,7 @@ void process() {
     uint8_t buttons = radioMessage.d4;
     //light button has been pressed
     //L6
-    if ((buttons & L6) && !(prevbuttons & L6)) {
+    if (((buttons & L6)) && !((prevbuttons & L6))) {
       setFade(colours[robots[radioMessage.robotID]], 40, (buttons & LT ? .5 : 1));
     }
     //L5
@@ -288,8 +288,9 @@ void setup() {
   robots[31] = 9;  //purple
   robots[32] = 10;  //turquoise
 
-  //Applausebots
-  //???
+  //Explodebots
+  robots[33] = 1;
+  robots[34] = 1;
   
   Serial.begin(9600);
   radioMessage.hdr0 = 0xAA;
@@ -309,6 +310,5 @@ void loop() {
     
     updateState();
   }
-
 }
 
